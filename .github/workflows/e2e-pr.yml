@@ -129,7 +129,7 @@ jobs:
           id: checkout
           with:
             path: ./local-run
-            repository: everestsystems/local-run
+            repository: AnhNg-GithubActions/local-run
             token: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Run E2E for given configuration
