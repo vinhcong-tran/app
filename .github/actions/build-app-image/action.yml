@@ -8,11 +8,11 @@ inputs:
   tag:
     description: Tag name for the resulting image
     required: true
-  userName:
+  docker-hub-user:
     description: User to push image
     required: true
-  password:
-    description: Password of user
+  docker-hub-token:
+    description: Token of user
     required: true
   
 runs:
@@ -55,8 +55,8 @@ runs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        username: ${{ inputs.docker-hub-user }}
+        password: ${{ inputs.docker-hub-token }}
 
     - name: Build and push
       uses: docker/build-push-action@v4
