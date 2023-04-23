@@ -78,6 +78,7 @@ jobs:
           tag: ${{ env.TAG }}
           docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
           docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
     needs: check_labels
 
   build-app-image:
