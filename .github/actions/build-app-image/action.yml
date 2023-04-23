@@ -67,5 +67,5 @@ runs:
         context: ./${{ inputs.version }}/app
         file: ./${{ inputs.version }}/app/Dockerfile
         push: true
-        load: true
+        # load: true
         tags: app:${{inputs.tag}}

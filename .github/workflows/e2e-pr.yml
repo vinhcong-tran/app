@@ -51,18 +51,18 @@ jobs:
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
     steps:
-      # - name: Set custom name
-      # if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
-      # run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
+      - name: Set custom name
+        if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
+        run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
 
-      # - name: Set standard name
-      # if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
-      # run: echo "TAG=latest" >> $GITHUB_ENV
+      - name: Set standard name
+        if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
+        run: echo "TAG=latest" >> $GITHUB_ENV
 
-      # - name: Set name as job output
-      # id: tag
-      # run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
-
+      - name: Set name as job output
+        id: tag
+        run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
+  
       - uses: actions/checkout@v3
         id: checkout
         with:
