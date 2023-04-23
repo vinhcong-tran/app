@@ -17,6 +17,9 @@ inputs:
   token:
     description: Github token
     required: true
+  docker-hub-address:
+    description:  Docker Hub address
+    required: true
   
 runs:
   using: composite
@@ -66,6 +69,4 @@ runs:
         context: ./${{ inputs.version }}
         file: ./${{ inputs.version }}/Dockerfile
         push: true
-        tags: anhnguyen104/app:${{inputs.tag}}
-        # secrets: |
-        #     GIT_AUTH_TOKEN=${{ inputs.token }}
+        tags: ${{inputs.docker-hub-address}}/app:${{inputs.tag}}
