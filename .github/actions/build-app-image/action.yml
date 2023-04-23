@@ -67,5 +67,5 @@ runs:
         file: ./${{ inputs.version }}/Dockerfile
         push: true
         tags: anhnguyen104/app:${{inputs.tag}}
-        secrets: |
-            GIT_AUTH_TOKEN=${{ inputs.token }}
+        # secrets: |
+        #     GIT_AUTH_TOKEN=${{ inputs.token }}
