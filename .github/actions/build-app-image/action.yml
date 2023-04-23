@@ -31,7 +31,6 @@ runs:
       shell: bash
 
     - name: Check for corresponding branch exists
-      if: ${{ inputs.version != 'latest' }}
       uses: octokit/request-action@v2.x
       id: check-branch
       env:
@@ -41,15 +40,6 @@ runs:
         owner: AnhNg-GithubActions
         repo: app
         branch: ${{ inputs.version }}
-
-    - uses: actions/checkout@v2
-      if: ${{ inputs.version != 'latest' }}
-      id: checkout
-      with:
-        path: ./${{ inputs.version }}
-        repository: AnhNg-GithubActions/app
-        ref: ${{ inputs.version }}
-        token: ${{ inputs.token }}
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
