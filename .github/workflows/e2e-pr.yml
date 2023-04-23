@@ -103,7 +103,7 @@ jobs:
         with:
           path: ./actions
           repository: AnhNg-GithubActions/app
-          token: ${{ secrets.GPR_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build APP for branch
         if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
