@@ -79,6 +79,7 @@ jobs:
           docker-hub-user: ${{ secrets.DOCKER_HUB_USER }}
           docker-hub-token: ${{ secrets.DOCKER_HUB_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          docker-hub-address: ${{env.CONTAINER_HUB_REPO}}
     needs: check_labels
 
   build-app-image:
@@ -114,6 +115,7 @@ jobs:
           docker-hub-user: ${{ secrets.DOCKER_HUB_USER }}
           docker-hub-token: ${{ secrets.DOCKER_HUB_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          docker-hub-address: ${{env.CONTAINER_HUB_REPO}}
     needs: check_labels
 
   run-e2e-with-configuration:
