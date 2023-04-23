@@ -67,7 +67,7 @@ jobs:
         id: checkout
         with:
           path: ./actions
-          repository: AnhNg-GithubActions/app
+          repository: AnhNg-GithubActions/e2e
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build E2E for branch
