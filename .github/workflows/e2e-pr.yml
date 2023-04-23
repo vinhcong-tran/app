@@ -45,73 +45,73 @@ jobs:
         id: e2e
         run: echo "e2e=${{ env.E2E }}" >> $GITHUB_OUTPUT
   
-    # build-e2e-image:
-    #     runs-on:
-    #         - ubuntu-latest
-    #     outputs:
-    #         tag: ${{ steps.tag.outputs.tag }}
-    #     steps:
-    #         # - name: Set custom name
-    #         # if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
-    #         # run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
+  build-e2e-image:
+    runs-on:
+      - ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      # - name: Set custom name
+      # if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
+      # run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
 
-    #         # - name: Set standard name
-    #         # if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
-    #         # run: echo "TAG=latest" >> $GITHUB_ENV
+      # - name: Set standard name
+      # if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
+      # run: echo "TAG=latest" >> $GITHUB_ENV
 
-    #         # - name: Set name as job output
-    #         # id: tag
-    #         # run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
+      # - name: Set name as job output
+      # id: tag
+      # run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
 
-    #         - uses: actions/checkout@v3
-    #         id: checkout
-    #         with:
-    #             path: ./actions
-    #             repository: AnhNg-GithubActions/app
-    #             token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+        id: checkout
+        with:
+          path: ./actions
+          repository: AnhNg-GithubActions/app
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    #         - name: Build E2E for branch
-    #         if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
-    #         uses: ./actions/.github/actions/build-e2e-image
-    #         with:
-    #             version: ${{  ( github.head_ref || github.ref_name )  }}
-    #             tag: ${{ env.TAG }}
-    #             docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
-    #             docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
-    #     needs: check_labels
+      - name: Build E2E for branch
+        if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
+        uses: ./actions/.github/actions/build-e2e-image
+        with:
+          version: ${{  ( github.head_ref || github.ref_name )  }}
+          tag: ${{ env.TAG }}
+          docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
+          docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
+    needs: check_labels
 
-    # build-app-image:
-    #     runs-on:
-    #         - ubuntu-latest
-    #     outputs:
-    #         tag: ${{ steps.tag.outputs.tag }}
-    #     steps:
-    #         - name: Set custom name
-    #         if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
-    #         run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
+  build-app-image:
+    runs-on:
+      - ubuntu-latest
+    outputs:
+        tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - name: Set custom name
+        if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
+        run: echo "TAG=pr-${{github.run_id}}" >> $GITHUB_ENV
 
-    #         - name: Set standard name
-    #         if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
-    #         run: echo "TAG=latest" >> $GITHUB_ENV
+      - name: Set standard name
+        if: ${{  ( github.head_ref || github.ref_name )  == 'main' }}
+        run: echo "TAG=latest" >> $GITHUB_ENV
 
-    #         - name: Set name as job output
-    #         id: tag
-    #         run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
+      - name: Set name as job output
+        id: tag
+        run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
 
-    #         - uses: actions/checkout@v3
-    #         id: checkout
-    #         with:
-    #             path: ./actions
-    #             repository: AnhNg-GithubActions/app
-    #             token: ${{ secrets.GPR_TOKEN }}
+      - uses: actions/checkout@v3
+        id: checkout
+        with:
+          path: ./actions
+          repository: AnhNg-GithubActions/app
+          token: ${{ secrets.GPR_TOKEN }}
 
-    #         - name: Build APP for branch
-    #         if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
-    #         uses: ./actions/.github/actions/build-app-image
-    #         with:
-    #             version: ${{  ( github.head_ref || github.ref_name )  }}
-    #             tag: ${{ env.TAG }}
-    #             docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
-    #             docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
+      - name: Build APP for branch
+        if: ${{  ( github.head_ref || github.ref_name )  != 'main' }}
+        uses: ./actions/.github/actions/build-app-image
+        with:
+          version: ${{  ( github.head_ref || github.ref_name )  }}
+          tag: ${{ env.TAG }}
+          docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
+          docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
     
 
