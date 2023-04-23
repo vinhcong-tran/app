@@ -64,11 +64,11 @@ jobs:
         run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v3
-        id: checkout
         with:
           path: ./actions
           repository: AnhNg-GithubActions/e2e
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
 
       - name: Build E2E for branch
         if: ${{  needs.check_labels.outputs.e2e  != 'main' }}
@@ -100,7 +100,6 @@ jobs:
         run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v3
-        id: checkout
         with:
           path: ./actions
           repository: AnhNg-GithubActions/app
