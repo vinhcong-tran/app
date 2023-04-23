@@ -112,8 +112,8 @@ jobs:
         with:
           version: ${{  ( github.head_ref || github.ref_name )  }}
           tag: ${{ env.TAG }}
-          docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
-          docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
+          docker-hub-user: ${{ secrets.DOCKER_HUB_USER }}
+          docker-hub-token: ${{ secrets.DOCKER_HUB_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
     needs: check_labels
 
