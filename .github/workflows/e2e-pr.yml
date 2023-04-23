@@ -62,7 +62,7 @@ jobs:
       - name: Set name as job output
         id: tag
         run: echo "tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
-  
+
       - uses: actions/checkout@v3
         id: checkout
         with:
