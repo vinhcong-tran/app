@@ -113,5 +113,5 @@ jobs:
           tag: ${{ env.TAG }}
           docker-hub-user: ${{ secrets.DOCKER-HUB-USER }}
           docker-hub-token: ${{ secrets.DOCKER-HUB-TOKEN }}
-    
+    needs: check_labels
 
