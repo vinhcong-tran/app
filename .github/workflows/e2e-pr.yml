@@ -11,37 +11,37 @@ jobs:
         outputs:
             e2e: ${{ steps.e2e.outputs.e2e }}
         steps:
-        - id: check_breaking_change
-        name: "Check 'PR: Breaking change' label exists"
-        uses: docker://agilepathway/pull-request-label-checker:v1.0.103
-        continue-on-error: true
-        with:
-            one_of: 'PR: Breaking change'
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
-
-        - name: Standard e2e Branch
-        run: echo "E2E=main" >> $GITHUB_ENV
-
-        - name: Check for corresponding branch exists
-        if: steps.check_breaking_change.outcome == 'success'
-        continue-on-error: true
-        uses: octokit/request-action@v2.x
-        id: check-e2e-branch
-        env:
-            GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
+            - name: "Check 'PR: Breaking change' label exists"
+            id: check_breaking_change
+            uses: docker://agilepathway/pull-request-label-checker:v1.0.103
+            continue-on-error: true
             with:
-            route: GET /repos/{owner}/{repo}/branches/{branch}
-            owner: AnhNg-GithubActions
-            repo: e2e
-            branch: ${{ github.head_ref || github.ref_name }}
+                one_of: 'PR: Breaking change'
+                repo_token: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Override with custom e2e Branch
-            if:
-                steps.check_breaking_change.outcome == 'success' && steps.check-e2e-branch.outcome
-                == 'success'
-            run: echo "E2E=${{ github.head_ref || github.ref_name }}" >> $GITHUB_ENV
+            - name: Standard e2e Branch
+            run: echo "E2E=main" >> $GITHUB_ENV
 
-        - name: Set e2e to output
+            - name: Check for corresponding branch exists
+            if: steps.check_breaking_change.outcome == 'success'
+            continue-on-error: true
+            uses: octokit/request-action@v2.x
+            id: check-e2e-branch
+            env:
+                GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
+                with:
+                route: GET /repos/{owner}/{repo}/branches/{branch}
+                owner: AnhNg-GithubActions
+                repo: e2e
+                branch: ${{ github.head_ref || github.ref_name }}
+
+            - name: Override with custom e2e Branch
+                if:
+                    steps.check_breaking_change.outcome == 'success' && steps.check-e2e-branch.outcome
+                    == 'success'
+                run: echo "E2E=${{ github.head_ref || github.ref_name }}" >> $GITHUB_ENV
+
+            - name: Set e2e to output
             id: e2e
             run: echo "e2e=${{ env.E2E }}" >> $GITHUB_OUTPUT
 
