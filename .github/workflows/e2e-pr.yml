@@ -134,5 +134,5 @@ jobs:
         - name: Run E2E for given configuration
           uses: ./local-run/.github/actions/run-e2e
           with:
-            e2e-image: ${{env.CONTAINER_HUB_REPO}}/e2e:${{needs.build-e2e-image.outputs.tag}}
-            app-image: ${{env.CONTAINER_HUB_REPO}}/app:${{needs.build-app-image.outputs.tag}}
+            e2e-image: ${{env.DOCKER_HUB_USER}}/e2e:${{needs.build-e2e-image.outputs.tag}}
+            app-image: ${{env.DOCKER_HUB_USER}}/app:${{needs.build-app-image.outputs.tag}}
