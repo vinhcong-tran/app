@@ -2,12 +2,13 @@ name: Build app image
 description: Builds app image for a given branch, tag and push it to docker hub
 inputs:
   version:
-    description: App version to build
+    description: App version (branch) to build
     required: false
     default: main
   tag:
     description: Tag name for the resulting image
-    required: true
+    required: false
+    default: latest
   docker-hub-user:
     description: User to push image
     required: true
