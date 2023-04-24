@@ -78,7 +78,7 @@ jobs:
           docker-hub-user: ${{ secrets.DOCKER_HUB_USER }}
           docker-hub-token: ${{ secrets.DOCKER_HUB_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          docker-hub-address: ${{env.DOCKER_HUB_USER}}
+          docker-hub-address: ${{secrets.DOCKER_HUB_USER}}
     needs: check_labels
 
   build-app-image:
@@ -114,7 +114,7 @@ jobs:
           docker-hub-user: ${{ secrets.DOCKER_HUB_USER }}
           docker-hub-token: ${{ secrets.DOCKER_HUB_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          docker-hub-address: ${{env.DOCKER_HUB_USER}}
+          docker-hub-address: ${{secrets.DOCKER_HUB_USER}}
     needs: check_labels
 
   run-e2e-with-configuration:
@@ -134,5 +134,5 @@ jobs:
         - name: Run E2E for given configuration
           uses: ./local-run/.github/actions/run-e2e
           with:
-            e2e-image: ${{env.DOCKER_HUB_USER}}/e2e:${{needs.build-e2e-image.outputs.tag}}
-            app-image: ${{env.DOCKER_HUB_USER}}/app:${{needs.build-app-image.outputs.tag}}
+            e2e-image: ${{secrets.DOCKER_HUB_USER}}/e2e:${{needs.build-e2e-image.outputs.tag}}
+            app-image: ${{secrets.DOCKER_HUB_USER}}/app:${{needs.build-app-image.outputs.tag}}
