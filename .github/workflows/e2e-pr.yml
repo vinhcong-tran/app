@@ -28,7 +28,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: check-e2e-branch
         env:
-         GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          with:
          route: GET /repos/{owner}/{repo}/branches/{branch}
          owner: AnhNg-GithubActions
