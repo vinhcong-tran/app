@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-    res.send("<h2>About route</h2>");
+    res.send("<h2>About route update</h2>");
 });
 
 app.listen(3000, () => console.log('Server listening at port 3000'));
