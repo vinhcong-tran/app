@@ -42,7 +42,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.token }}
       with:
         route: GET /repos/{owner}/{repo}/branches/{branch}
-        owner: vinhevizi
+        owner: vinhcong-tran
         repo: app
         branch: ${{ inputs.version }}
 
@@ -55,7 +55,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         path: ./${{ inputs.version }}
-        repository: vinhevizi/app
+        repository: vinhcong-tran/app
         ref: ${{ inputs.version }}
         token: ${{inputs.token }}
 
